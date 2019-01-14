@@ -21,6 +21,7 @@ public class MasterHooks extends TestBase {
 				driver.manage().deleteAllCookies();
 				driver.quit();
 				driver = null;
+				prop = null;
 			}
 			if(driver != null) {
 				driver.manage().deleteAllCookies();

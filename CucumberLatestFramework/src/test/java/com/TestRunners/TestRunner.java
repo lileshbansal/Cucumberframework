@@ -20,9 +20,11 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		features = {"src/test/java/com/Features"}, 
 		glue = {"com.StepDefinitions", "com.utils"},
 		monochrome = true, 
-		tags = {}, 
+		tags = {"@SmokeTest"}, 
 		plugin = { "pretty", "html:target/cucumber", "json:target/cucumber.json",
-				"com.cucumber.listener.ExtentCucumberFormatter:output/report.html" }
+				"com.cucumber.listener.ExtentCucumberFormatter:output/report.html" },
+		dryRun = false
+	
 		)
 
 public class TestRunner extends AbstractTestNGCucumberTests {

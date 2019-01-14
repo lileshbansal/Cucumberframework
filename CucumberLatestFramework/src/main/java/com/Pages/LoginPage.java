@@ -1,6 +1,5 @@
 package com.Pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -11,14 +10,18 @@ import com.TestBase.TestBase;
 
 public class LoginPage extends TestBase{
 	
-	@FindBy(name = "username")
+	@FindBy(id = "ch_login_email")
 	WebElement username;
 	
-	@FindBy(name = "password")
+	@FindBy(id = "ch_login_password")
 	WebElement password;
 	
-	@FindBy(xpath = "//input[@type='submit']")
+	@FindBy(xpath = "//button[@id='ch_login_btn']")
 	WebElement btnlogin;
+	
+	@FindBy(xpath = "//a[@id='ch_login_icon']")
+	WebElement login_link;
+	
 	
 	public LoginPage() {
 		
@@ -27,36 +30,27 @@ public class LoginPage extends TestBase{
 	
 	public void login(String username1 , String pass)  {
 		try {
-			Thread.sleep(3000);
+
+			login_link.click();
 			username.sendKeys(username1);
 			password.sendKeys(pass);
+
+		} catch (Exception e) {
 			
-			//btnlogin.click();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
 	
 	public void submit() {
-		try {
-			
-			JavascriptExecutor js = (JavascriptExecutor)driver;
-			 js.executeScript("arguments[0].click();", btnlogin);
-			 Thread.sleep(10000);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 btnlogin.click();
 		
 	}
+	
 	public void loginPageTitleCheck() {
 		String title = driver.getTitle();
-		Assert.assertEquals("#1 Free CRM software in the cloud for sales and service", title);
+		
+		Assert.assertEquals("MakeMyTrip - #1 Travel Website 50% OFF on Hotels, Flights & Holiday", title);
 	}
-	public void homePageTitleCheck() {
-		String title = driver.getTitle();
-		Assert.assertEquals("CRMPRO", title);
-	}
+	
 }

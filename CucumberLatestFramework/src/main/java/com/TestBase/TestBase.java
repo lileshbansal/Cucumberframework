@@ -16,19 +16,16 @@ public class TestBase {
 	public static WebDriver driver;
 	public static Properties prop;
 
-	// @Parameters("browserName")
-	//@Before
+	
 	public void initilization() {
-		System.out.println("inside init method");
 		try {
 			prop = new Properties();
 			
 			FileInputStream ip = new FileInputStream(
 					"C:\\Users\\lilbansa1\\eclipse-workspace\\CucumberLatestFramework\\src\\main\\java\\properties\\config.properties");
 			prop.load(ip);
-			
+			ip.close();
 			String browserName = prop.getProperty("browser");
-			System.out.println("browser name is " + browserName);
 			switch (browserName) {
 
 			case "chrome": {
@@ -49,9 +46,11 @@ public class TestBase {
 				break;
 			}
 			}
-
+			
+			
+			prop.setProperty("baseUrl", "https://www.makemytrip.com/");
 			driver.get(prop.getProperty("baseUrl"));
-
+			
 			driver.manage().window().maximize();
 			driver.manage().deleteAllCookies();
 			driver.manage().timeouts().pageLoadTimeout(utilities.Page_load_timeout, TimeUnit.SECONDS);

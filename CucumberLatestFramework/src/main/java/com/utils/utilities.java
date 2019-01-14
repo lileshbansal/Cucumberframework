@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
@@ -29,6 +30,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.TestBase.TestBase;
 import com.cucumber.listener.Reporter;
+
+import cucumber.api.DataTable;
 
 public class utilities extends TestBase {
 	
@@ -409,6 +412,14 @@ public class utilities extends TestBase {
 			File source = new File(System.getProperty("user.dir") + "\\output\\report.html");
 			File dest = new File(System.getProperty("user.dir") + "\\output\\" + date.toString() + ".html");
 			copyFileUsingStream(source, dest);
+		}
+		
+		
+		public static List<Map<String, String>> getDataTableInfo(DataTable credentials)  {
+			
+			//Map<String, String>> data = credentials.asMaps(String.class, String.class); 
+				
+			return credentials.asMaps(String.class, String.class);
 		}
 	}
 
